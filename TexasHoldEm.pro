@@ -12,6 +12,7 @@ SOURCES += main.cpp \
 	game.cpp \
 	hand.cpp \
 	king_of_aces.cpp \
+	kobed.cpp \
 	poker_rank.cpp \
 	table.cpp \
 	tournament.cpp
@@ -23,6 +24,7 @@ HEADERS += \
 	game.h \
 	hand.h \
 	king_of_aces.h \
+	kobed.h \
 	player.h \
 	playerid.h \
 	poker_rank.h \
