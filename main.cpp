@@ -5,6 +5,7 @@
 #include "tournament.h"
 #include "king_of_aces.h"
 #include "bart.h"
+#include "kobed.h"
 
 using namespace std;
 
@@ -17,14 +18,15 @@ int main( int argumentCount, char * argumentVector[] )
 	{
 		tour.registerPlayer( new PXL2022::KingOfAces( i ), PXL_2022 );
 		tour.registerPlayer( new PXL2022::Bart( i ), PXL_2021 );
+        tour.registerPlayer( new PXL2023::KobeD(i),PXL_2023);
 	}
 
 	if( argumentCount > 1 && ( strcmp( argumentVector[argumentCount-1], "stats" ) == 0 ) )
 	{
-		runStatistics( tour, 10 );
+        runStatistics( tour, 1 );
 	}
 	else
-	{
+    {
 		/*const Player * winnaar = */tour.start();
 	}
 	return( 0 );
