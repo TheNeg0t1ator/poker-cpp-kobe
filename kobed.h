@@ -11,6 +11,10 @@ public:
     KobeD( unsigned char instance = 0 )	: Player(instance)	{}
     int willYouRaise( unsigned int totalBet );
     const char* getName( void ) const;
+private:
+    bool IsFirstBet();
+    int NumberOfCallersOnStart ();
+
 
 
 };
