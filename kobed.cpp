@@ -3,42 +3,6 @@
 
 namespace PXL2023
 {
-int KobeD::willYouRaise( unsigned int totalBet ){
-
-    if(totalBet ==0){}//gwn d'r ff iets mee doen voor de compiler te laten zwijgen XD
-    PokerRank pokerHand = getRank();
-    printf("\n handCat: %d\n",pokerHand.getCategory());
-
-
-
-
-    if (pokerHand.getCategory() >= FULL_HOUSE)
-    {
-        return 10000;
-    }
-
-    if (pokerHand.getCategory() <= TWO_PAIR)
-    {
-        return -1;
-    }
-    else
-    {
-        if (pokerHand.getCategory() >= THREE_OF_A_KIND)
-        {
-            if(KobeD::NumberOfCallersOnStart()>=3){
-              return 20000;
-            }
-
-
-        }
-        return 0;
-    }
-
-
-    return 0;
-
-}
-
 
 const char * KobeD::getName( void ) const
 {
@@ -83,4 +47,107 @@ int KobeD::NumberOfCallersOnStart ()
     return total;
 }
 
+int KobeD::randomCopyCat(){
+
+    Player * PlayerToCopy = nullptr;
+    size_t y = 0;
+    while (1) {
+        y++;
+        if(y == getGame()->getPlayers().size() || y== 20){
+            break;
+        }
+        int i = rand() % getGame()->getPlayers().size();
+        if((getGame()->getPlayers()[i]->hasHand()) && (getGame()->getPlayers()[i] != this)){
+            PlayerToCopy = getGame()->getPlayers()[i];
+            break;
+        }
+
+    }
+
+    if(PlayerToCopy == nullptr){
+        return 0;
+    }else{
+        return PlayerToCopy->getBet();
+    }
+
+    return 0;
 }
+
+int KobeD::moneyCopyCat(){
+
+    Player * PlayerToCopy = nullptr;
+    unsigned int maxMoneyToCopy = 0;
+    for(size_t i = 0; i< getGame()->getPlayers().size(); i++ ){
+        if((getGame()->getPlayers()[i]->hasHand()) && (getGame()->getPlayers()[i] != this)){
+            if(getGame()->getPlayers()[i]->getChips() > maxMoneyToCopy){
+                maxMoneyToCopy = getGame()->getPlayers()[i]->getChips();
+                PlayerToCopy = getGame()->getPlayers()[i];
+            }
+        }
+    }
+
+    if(PlayerToCopy == nullptr){
+        return 0;
+    }else{
+        return PlayerToCopy->getBet();
+    }
+
+    return 0;
+}
+
+int KobeD::willYouRaise( unsigned int totalBet ){
+
+    if(totalBet ==0){}//gwn d'r ff iets mee doen voor de compiler te laten zwijgen XD
+    PokerRank pokerHand = getRank();
+    //printf("\n handCat: %d\n",pokerHand.getCategory());
+    int callerCount = (3+instance) % 7;
+
+    if (pokerHand.getCategory() >= FULL_HOUSE)
+    {
+        return 10000;
+    }
+
+
+
+
+    switch (instance) {
+    case 0:
+
+        if (pokerHand.getCategory() <= TWO_PAIR)
+        {
+            return -1;
+        }
+        else
+        {
+            if (pokerHand.getCategory() >= THREE_OF_A_KIND)
+            {
+                if(NumberOfCallersOnStart ()>=callerCount){
+                    return moneyCopyCat();
+                }
+
+
+            }
+            return 0;
+        }
+        return 0;
+        break;
+    case 1:
+    {
+        return randomCopyCat();
+    }
+        break;
+
+    default:
+        return moneyCopyCat();
+        break;
+    }
+
+
+
+
+
+    return 0;
+}
+
+}
+

@@ -16,7 +16,10 @@ SOURCES += main.cpp \
 	poker_rank.cpp \
 	table.cpp \
         tournament.cpp \
-        seppe.cpp
+        seppe.cpp \
+        ceyhan.cpp \
+        pxl_2023_samy.cpp \
+        dries.cpp
 
 HEADERS += \
 	bart.h \
@@ -32,4 +35,7 @@ HEADERS += \
 	table.h \
 	tournament.h \
         shootout.h \
-        seppe.h
+        seppe.h \
+        ceyhan.h \
+        pxl_2023_samy.h \
+        dries.h

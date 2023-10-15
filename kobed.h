@@ -12,10 +12,10 @@ public:
     int willYouRaise( unsigned int totalBet );
     const char* getName( void ) const;
 private:
+    int randomCopyCat();
+    int moneyCopyCat();
     bool IsFirstBet();
     int NumberOfCallersOnStart ();
-
-
 
 };
 }
