@@ -5,10 +5,6 @@
 #include "tournament.h"
 #include "bart.h"
 #include "kobed.h"
-#include "seppe.h"
-#include "dries.h"
-#include "ceyhan.h"
-#include "pxl_2023_samy.h"
 #include "king_of_aces.h"
 
 using namespace std;
