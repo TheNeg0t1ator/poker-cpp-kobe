@@ -95,3 +95,18 @@ bin/*
 20*/*.cpp
 .qtc_*
 20*/*
+
+#ignoring all the other players
+dries.h
+dries.cpp
+
+seppe.h
+seppe.cpp
+
+ceyhan.h
+ceyhan.cpp
+
+pxl_2023_samy.h
+pxl_2023_samy.cpp
+
+main.cpp
