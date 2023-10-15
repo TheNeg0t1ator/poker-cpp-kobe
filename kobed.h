@@ -14,6 +14,7 @@ public:
 private:
     int randomCopyCat();
     int moneyCopyCat();
+    int ChooseCat();
     bool IsFirstBet();
     int NumberOfCallersOnStart ();
 

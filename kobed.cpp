@@ -6,6 +6,12 @@ namespace PXL2023
 
 const char * KobeD::getName( void ) const
 {
+    if( getChips() > 128 )
+    {
+        return "MEEEEEOOOOOOOWWW !!! (KD)";
+    }else{
+        return "Kobeke";
+    }
     return "Kobeke";
 }
 
@@ -95,6 +101,16 @@ int KobeD::moneyCopyCat(){
     return 0;
 }
 
+int KobeD::ChooseCat(){
+
+    if(rand() % 1){
+        return randomCopyCat();
+    }else{
+        return moneyCopyCat();
+    }
+    return 0;
+}
+
 int KobeD::willYouRaise( unsigned int totalBet ){
 
     if(totalBet ==0){}//gwn d'r ff iets mee doen voor de compiler te laten zwijgen XD
@@ -107,13 +123,14 @@ int KobeD::willYouRaise( unsigned int totalBet ){
         return 10000;
     }
 
-
-
-
     switch (instance) {
     case 0:
+    {
 
-        if (pokerHand.getCategory() <= TWO_PAIR)
+        if(getGame()->getTable()->isPreFlop()){
+            return moneyCopyCat();
+        }else{
+        if (pokerHand.getCategory() <= ONE_PAIR)
         {
             return -1;
         }
@@ -122,21 +139,29 @@ int KobeD::willYouRaise( unsigned int totalBet ){
             if (pokerHand.getCategory() >= THREE_OF_A_KIND)
             {
                 if(NumberOfCallersOnStart ()>=callerCount){
-                    return moneyCopyCat();
+                    return 200000;
                 }
 
 
+            }else{
+                return 0;
             }
-            return 0;
         }
-        return 0;
-        break;
-    case 1:
-    {
-        return randomCopyCat();
-    }
-        break;
 
+        }
+
+
+    }
+    break;
+    case 1:
+        return randomCopyCat();
+        break;
+    case 2:
+        return moneyCopyCat();
+        break;
+    case 3:
+        return ChooseCat();
+        break;
     default:
         return moneyCopyCat();
         break;
